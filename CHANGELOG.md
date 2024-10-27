@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
 ## Unreleased
+- /
+
+## [3.2.2] - 2024-10-27
 
 - Added `matchAnyInventorySlot(itemFilter)` and `matchAnyHotbarSlot(itemFilter)`
 
@@ -295,6 +298,7 @@ We are now on 1.18.2!
 
 <!-- Versions -->
 
+[3.2.2]: https://github.com/AlmostReliable/lootjs/releases/tag/v1.21.1-neoforge-3.2.2
 [3.1.2]: https://github.com/AlmostReliable/lootjs/releases/tag/v1.21.1-neoforge-3.1.2
 [3.1.1]: https://github.com/AlmostReliable/lootjs/releases/tag/v1.21-neoforge-3.1.1
 [3.1.0]: https://github.com/AlmostReliable/lootjs/releases/tag/v1.21-neoforge-3.1.0
