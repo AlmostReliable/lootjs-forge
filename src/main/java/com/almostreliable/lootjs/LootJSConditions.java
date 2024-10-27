@@ -1,5 +1,6 @@
 package com.almostreliable.lootjs;
 
+import com.almostreliable.lootjs.core.filters.ItemFilter;
 import com.almostreliable.lootjs.loot.condition.*;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.advancements.critereon.DistancePredicate;
@@ -27,6 +28,9 @@ public class LootJSConditions {
 
     public static Holder<LootItemConditionType> MATCH_EQUIP = CONDITIONS.register("match_equip",
             () -> create(new MatchEquipmentSlot()));
+    public static Holder<LootItemConditionType> MATCH_ANY_INVENTORY_SLOT = CONDITIONS.register(
+            "match_any_inventory_slot",
+            () -> create(new MatchAnyInventorySlot(ItemFilter.NONE, false)));
     public static Holder<LootItemConditionType> DISTANCE = CONDITIONS.register("match_distance",
             () -> create(new MatchKillerDistance(DistancePredicate.vertical(MinMaxBounds.Doubles.ANY))));
     public static Holder<LootItemConditionType> ANY_STRUCTURE = CONDITIONS.register("match_structure",

@@ -6,7 +6,8 @@ The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
 ## Unreleased
-- /
+
+- Added `matchAnyInventorySlot(itemFilter)` and `matchAnyHotbarSlot(itemFilter)`
 
 ## [3.1.2] - 2024-10-14
 

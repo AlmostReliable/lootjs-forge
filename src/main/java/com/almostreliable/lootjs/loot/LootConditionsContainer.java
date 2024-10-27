@@ -70,6 +70,14 @@ public interface LootConditionsContainer<C> {
         return addCondition(new MatchEquipmentSlot(slot, filter));
     }
 
+    default C matchAnyInventorySlot(ItemFilter filter) {
+        return addCondition(new MatchAnyInventorySlot(filter, false));
+    }
+
+    default C matchAnyHotbarSlot(ItemFilter filter) {
+        return addCondition(new MatchAnyInventorySlot(filter, true));
+    }
+
     default C survivesExplosion() {
         return addCondition(ExplosionCondition.survivesExplosion().build());
     }
