@@ -3,6 +3,7 @@ package com.almostreliable.lootjs.mixin;
 import com.almostreliable.lootjs.loot.LootConditionList;
 import com.almostreliable.lootjs.loot.LootEntryList;
 import com.almostreliable.lootjs.loot.LootFunctionList;
+import com.almostreliable.lootjs.loot.extension.CompositeEntryBaseExtension;
 import com.almostreliable.lootjs.loot.extension.LootPoolExtension;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -60,5 +61,14 @@ public class LootPoolMixin implements LootPoolExtension {
     @Override
     public void lootjs$setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public void lootjs$recompose() {
+        for (var entry : entries) {
+            if (entry instanceof CompositeEntryBaseExtension ext) {
+                ext.lootjs$recompose();
+            }
+        }
     }
 }

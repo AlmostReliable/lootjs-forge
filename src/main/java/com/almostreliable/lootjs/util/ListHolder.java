@@ -1,6 +1,6 @@
 package com.almostreliable.lootjs.util;
 
-import net.minecraft.resources.ResourceLocation;
+import dev.latvian.mods.rhino.util.HideFromJS;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,14 +8,22 @@ import java.util.List;
 
 public abstract class ListHolder<W, T> implements Iterable<W> {
 
-    protected final List<T> elements = new ArrayList<>();
+    protected final ArrayList<T> elements;
+
+    public static <T> ArrayList<T> asArrayList(List<T> list) {
+        if (list instanceof ArrayList) {
+            return (ArrayList<T>) list;
+        } else {
+            return new ArrayList<>(list);
+        }
+    }
 
     public ListHolder() {
-
+        elements = new ArrayList<>();
     }
 
     public ListHolder(List<T> elements) {
-        this.elements.addAll(elements);
+        this.elements = asArrayList(elements);
     }
 
     @Override
@@ -25,6 +33,7 @@ public abstract class ListHolder<W, T> implements Iterable<W> {
 
     protected abstract T unwrap(W entry);
 
+    @HideFromJS
     public List<T> getElements() {
         return elements;
     }

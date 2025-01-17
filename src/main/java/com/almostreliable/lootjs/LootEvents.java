@@ -1,5 +1,6 @@
 package com.almostreliable.lootjs;
 
+import com.almostreliable.lootjs.loot.extension.LootTableExtension;
 import net.minecraft.core.WritableRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -28,6 +29,9 @@ public class LootEvents {
     public static void invoke(WritableRegistry<LootTable> registry) {
         if (TABLE_EVENT_LISTENERS != null) {
             TABLE_EVENT_LISTENERS.accept(registry);
+            for (LootTable lootTable : registry) {
+                ((LootTableExtension) lootTable).lootjs$recompose();
+            }
         }
     }
 

@@ -52,7 +52,6 @@ public class CompositeLootEntry implements LootEntry, LootEntriesTransformer, Lo
 
     @Override
     public CompositeEntryBase getVanillaEntry() {
-        free();
         return vanillaEntry;
     }
 
@@ -80,13 +79,6 @@ public class CompositeLootEntry implements LootEntry, LootEntriesTransformer, Lo
         entries(entries -> entries.collectDebugInfo(info));
         when(conditions -> conditions.collectDebugInfo(info));
         info.pop();
-    }
-
-    protected void free() {
-        if (entries != null) {
-            ((CompositeEntryBaseExtension) vanillaEntry).lootjs$setEntries(entries.createVanillaArray());
-            entries = null;
-        }
     }
 
     @Override

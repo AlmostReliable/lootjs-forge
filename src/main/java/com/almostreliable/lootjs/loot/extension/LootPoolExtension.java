@@ -5,6 +5,7 @@ import com.almostreliable.lootjs.loot.LootEntryList;
 import com.almostreliable.lootjs.loot.LootFunctionList;
 import com.almostreliable.lootjs.util.DebugInfo;
 import com.mojang.serialization.JsonOps;
+import dev.latvian.mods.rhino.util.HideFromJS;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProviders;
 
@@ -37,4 +38,7 @@ public interface LootPoolExtension {
         lootjs$getConditions().collectDebugInfo(info);
         lootjs$getFunctions().collectDebugInfo(info);
     }
+
+    @HideFromJS
+    void lootjs$recompose();
 }

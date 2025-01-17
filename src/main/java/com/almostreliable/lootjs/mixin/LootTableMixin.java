@@ -3,6 +3,7 @@ package com.almostreliable.lootjs.mixin;
 import com.almostreliable.lootjs.LootJS;
 import com.almostreliable.lootjs.core.LootBucket;
 import com.almostreliable.lootjs.loot.LootFunctionList;
+import com.almostreliable.lootjs.loot.extension.LootPoolExtension;
 import com.almostreliable.lootjs.loot.extension.LootTableExtension;
 import com.almostreliable.lootjs.loot.table.LootTracker;
 import com.almostreliable.lootjs.loot.table.PostLootAction;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
-import net.minecraft.world.level.storage.loot.functions.LootItemFunctions;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
@@ -39,13 +39,12 @@ public abstract class LootTableMixin implements PostLootActionOwner, LootTableEx
     @Mutable @Shadow @Final private List<LootItemFunction> functions;
     @Mutable @Shadow @Final private BiFunction<ItemStack, LootContext, ItemStack> compositeFunction;
     @Mutable @Shadow @Final private List<LootPool> pools;
-
-    @Shadow
-    public abstract ResourceLocation getLootTableId();
-
     @Unique
     @Nullable
     private PostLootAction lootjs$postLootAction;
+
+    @Shadow
+    public abstract ResourceLocation getLootTableId();
 
     @Override
     public void lootjs$setPostLootAction(PostLootAction postLootAction) {
@@ -127,5 +126,12 @@ public abstract class LootTableMixin implements PostLootActionOwner, LootTableEx
     @Override
     public LootContextParamSet lootjs$getParamSet() {
         return this.paramSet;
+    }
+
+    @Override
+    public void lootjs$recompose() {
+        for (var p : lootjs$getPools()) {
+            ((LootPoolExtension) p).lootjs$recompose();
+        }
     }
 }

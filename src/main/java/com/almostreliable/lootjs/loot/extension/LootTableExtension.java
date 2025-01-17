@@ -1,6 +1,7 @@
 package com.almostreliable.lootjs.loot.extension;
 
 import com.almostreliable.lootjs.loot.LootFunctionList;
+import dev.latvian.mods.rhino.util.HideFromJS;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -29,4 +30,7 @@ public interface LootTableExtension {
     void lootjs$setParamSet(LootContextParamSet paramSet);
 
     LootContextParamSet lootjs$getParamSet();
+
+    @HideFromJS
+    void lootjs$recompose();
 }
